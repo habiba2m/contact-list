@@ -53,13 +53,7 @@ function ContactList({ contacts, isLoading, isError }) {
           <ul>
             {(filteredContacts.length > 0 ? filteredContacts : contacts).map(
               (contact) => (
-                <ContactCard
-                  key={contact.login.uuid}
-                  name={`${contact.name.first} ${contact.name.last}`}
-                  imgUrl={contact.picture.large}
-                  phone={contact.phone}
-                  email={contact.email}
-                />
+                <ContactCard key={contact.login.uuid} contact={contact} />
               )
             )}
           </ul>
