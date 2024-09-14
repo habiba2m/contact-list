@@ -32,6 +32,7 @@ function ContactListPage() {
         query={query}
         setQuery={setQuery}
         firstLetterArray={firstLetterArray}
+        setFirstLetterArray={setFirstLetterArray}
       />
       <ContactList
         contacts={contacts}
@@ -39,7 +40,6 @@ function ContactListPage() {
         isError={isError}
         query={query}
         setFilteredContacts={setFilteredContacts}
-        setFirstLetterArray={setFirstLetterArray}
         filteredContacts={filteredContacts}
       />
     </div>

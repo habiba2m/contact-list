@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 function Filter({
   filteredContacts,
   setFilteredContacts,
@@ -5,7 +7,29 @@ function Filter({
   query,
   setQuery,
   firstLetterArray,
+  setFirstLetterArray,
 }) {
+  useEffect(() => {
+    const letters = [
+      ...new Set(
+        contacts.map((contact) => contact.name.first[0].toUpperCase())
+      ),
+    ];
+    setFirstLetterArray(letters.sort());
+  }, [contacts, setFirstLetterArray]);
+
+  useEffect(() => {
+    if (query === "") setFilteredContacts([]);
+    else {
+      const filteredContacts = contacts.filter(
+        (contact) =>
+          contact.name.first.toLowerCase().startsWith(query.toLowerCase()) ||
+          contact.name.last.toLowerCase().startsWith(query.toLowerCase())
+      );
+      setFilteredContacts(filteredContacts);
+    }
+  }, [query, contacts, setFilteredContacts]);
+
   return (
     <>
       <button
@@ -40,7 +64,7 @@ function Filter({
       <input
         className="search"
         type="text"
-        placeholder="Search"
+        placeholder="🔍 Search"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />

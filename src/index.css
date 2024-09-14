@@ -121,7 +121,7 @@ li img {
   flex-direction: column;
   align-items: center;
   background-image: linear-gradient(62deg, #f37acf 0%, #e0c3fc 100%);
-  padding: 5%;
+  padding: 7%;
   border-radius: 15px;
   gap: 12px;
   min-width: 300px;
@@ -186,10 +186,6 @@ li img {
     top: 89%;
     right: 33%;
   }
-}
-
-.create-contact:hover {
-  background-color: rgba(225, 137, 213, 0.606);
 }
 
 form h1 {
