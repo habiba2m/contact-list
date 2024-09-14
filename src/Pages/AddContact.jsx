@@ -81,15 +81,12 @@ function AddContact() {
       delete submissionData.city;
       delete submissionData.state;
       delete submissionData.country;
-      console.log("Form submitted:", submissionData);
       isEdit
         ? dispatch(editContact(submissionData))
         : dispatch(addContact(submissionData));
       navigate("/");
     }
   };
-
-  console.log(contact, "contact");
 
   return (
     <form className="contact-container" onSubmit={handleSubmit}>
