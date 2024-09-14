@@ -1,26 +1,18 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import ContactList from "../Components/ContactList";
+import { fetchContacts } from "../store";
 
 function ContactListPage() {
-  const [contacts, setContacts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setError] = useState(false);
+  const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts);
+  const isLoading = useSelector((state) => state.isLoading);
+  const isError = useSelector((state) => state.isError);
 
   useEffect(() => {
-    async function fetchContacts() {
-      try {
-        setIsLoading(true);
-        const response = await fetch("https://randomuser.me/api/?results=50");
-        const data = await response.json();
-        setContacts(data?.results);
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
-        setError(true);
-      }
-    }
-    fetchContacts();
-  }, []);
+    if (contacts.length > 0) return;
+    dispatch(fetchContacts());
+  }, [contacts.length, dispatch]);
 
   return (
     <div className="container">
