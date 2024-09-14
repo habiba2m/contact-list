@@ -253,6 +253,7 @@ input:focus {
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  gap: 1rem;
 }
 
 .delete-button {
