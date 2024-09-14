@@ -1,11 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import ContactCard from "./ContactCard";
 
-function ContactList({ contacts, isLoading, isError }) {
-  const [filteredContacts, setFilteredContacts] = useState([]);
-  const [firstLetterArray, setFirstLetterArray] = useState([]);
-  const [query, setQuery] = useState("");
-
+function ContactList({
+  contacts,
+  isLoading,
+  isError,
+  query,
+  setFilteredContacts,
+  setFirstLetterArray,
+  filteredContacts,
+}) {
   useEffect(() => {
     const letters = [
       ...new Set(
@@ -13,7 +17,7 @@ function ContactList({ contacts, isLoading, isError }) {
       ),
     ];
     setFirstLetterArray(letters.sort());
-  }, [contacts]);
+  }, [contacts, setFirstLetterArray]);
 
   useEffect(() => {
     if (query === "") setFilteredContacts([]);
@@ -25,7 +29,7 @@ function ContactList({ contacts, isLoading, isError }) {
       );
       setFilteredContacts(filteredContacts);
     }
-  }, [query, contacts]);
+  }, [query, contacts, setFilteredContacts]);
 
   return (
     <>
@@ -35,42 +39,6 @@ function ContactList({ contacts, isLoading, isError }) {
         <p className="loading">loading...</p>
       ) : (
         <>
-          <button
-            className={
-              filteredContacts.length === 0
-                ? "filter-button active-button"
-                : "filter-button"
-            }
-            onClick={() => setFilteredContacts([])}
-          >
-            All
-          </button>
-          {firstLetterArray.map((letter) => (
-            <button
-              key={letter}
-              className={
-                filteredContacts[0]?.name?.first[0]?.toUpperCase() === letter &&
-                query === ""
-                  ? "filter-button active-button"
-                  : "filter-button"
-              }
-              onClick={() => {
-                const filteredContacts = contacts.filter(
-                  (contact) => contact.name.first[0].toUpperCase() === letter
-                );
-                setFilteredContacts(filteredContacts);
-              }}
-            >
-              {letter}
-            </button>
-          ))}
-          <input
-            className="search"
-            type="text"
-            placeholder="Search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
           <ul>
             {(filteredContacts.length > 0
               ? filteredContacts
