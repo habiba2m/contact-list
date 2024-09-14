@@ -131,7 +131,6 @@ function AddContact() {
           {errors[key] && <span className="error">{errors[key]}</span>}
         </label>
       ))}
-
       <input className="submit-button" type="submit" value="Submit" />
     </form>
   );

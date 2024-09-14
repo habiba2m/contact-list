@@ -1,10 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import ContactCard from "./ContactCard";
 
-function ContactList({ contacts, isLoading, isError }) {
-  const [filteredContacts, setFilteredContacts] = useState([]);
-  const [firstLetterArray, setFirstLetterArray] = useState([]);
-
+function ContactList({
+  contacts,
+  isLoading,
+  isError,
+  query,
+  setFilteredContacts,
+  setFirstLetterArray,
+  filteredContacts,
+}) {
   useEffect(() => {
     const letters = [
       ...new Set(
@@ -12,7 +17,19 @@ function ContactList({ contacts, isLoading, isError }) {
       ),
     ];
     setFirstLetterArray(letters.sort());
-  }, [contacts]);
+  }, [contacts, setFirstLetterArray]);
+
+  useEffect(() => {
+    if (query === "") setFilteredContacts([]);
+    else {
+      const filteredContacts = contacts.filter(
+        (contact) =>
+          contact.name.first.toLowerCase().startsWith(query.toLowerCase()) ||
+          contact.name.last.toLowerCase().startsWith(query.toLowerCase())
+      );
+      setFilteredContacts(filteredContacts);
+    }
+  }, [query, contacts, setFilteredContacts]);
 
   return (
     <>
@@ -22,39 +39,17 @@ function ContactList({ contacts, isLoading, isError }) {
         <p className="loading">loading...</p>
       ) : (
         <>
-          <button
-            className={
-              filteredContacts.length === 0
-                ? "filter-button active-button"
-                : "filter-button"
-            }
-            onClick={() => setFilteredContacts([])}
-          >
-            All
-          </button>
-          {firstLetterArray.map((letter) => (
-            <button
-              key={letter}
-              className={
-                filteredContacts[0]?.name?.first[0]?.toUpperCase() === letter
-                  ? "filter-button active-button"
-                  : "filter-button"
-              }
-              onClick={() => {
-                const filteredContacts = contacts.filter(
-                  (contact) => contact.name.first[0].toUpperCase() === letter
-                );
-                setFilteredContacts(filteredContacts);
-              }}
-            >
-              {letter}
-            </button>
-          ))}
           <ul>
-            {(filteredContacts.length > 0 ? filteredContacts : contacts).map(
-              (contact) => (
-                <ContactCard key={contact.login.uuid} contact={contact} />
-              )
+            {(filteredContacts.length > 0
+              ? filteredContacts
+              : query === ""
+              ? contacts
+              : []
+            ).map((contact) => (
+              <ContactCard key={contact.login.uuid} contact={contact} />
+            ))}
+            {query !== "" && filteredContacts.length === 0 && (
+              <p className="no-result">No results found</p>
             )}
           </ul>
         </>
