@@ -8,8 +8,10 @@ function ContactInfo({ contact }) {
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    dispatch(deleteContact(contact.login.uuid));
-    navigate("/");
+    if (window.confirm("Are you sure you want to delete this contact?")) {
+      dispatch(deleteContact(contact.login.uuid));
+      navigate("/");
+    }
   };
 
   return (
