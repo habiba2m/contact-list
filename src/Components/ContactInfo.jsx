@@ -19,9 +19,9 @@ function ContactInfo({ contact }) {
             pathname: `/contact/${contact.login.uuid}/edit`,
           }}
           state={{ contact }}
-          className="create-contact"
+          className="edit-contact"
         >
-          Edit Contact
+          Edit Contact ✏️
         </Link>
       </div>
     </div>

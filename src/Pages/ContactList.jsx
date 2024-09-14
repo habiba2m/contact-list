@@ -19,7 +19,7 @@ function ContactListPage() {
     <div className="container">
       <h1 className="header">Contact List</h1>
       <Link className="create-contact" to="/contact/new">
-        Add Contact
+        + Add Contact
       </Link>
       <br />
       <ContactList
