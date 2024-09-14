@@ -11,7 +11,7 @@ function ContactList({ contacts, isLoading, isError }) {
         contacts.map((contact) => contact.name.first[0].toUpperCase())
       ),
     ];
-    setFirstLetterArray(letters);
+    setFirstLetterArray(letters.sort());
   }, [contacts]);
 
   return (
