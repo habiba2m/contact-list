@@ -28,7 +28,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #4158d0;
   background-image: linear-gradient(
     43deg,
     #4158d0 0%,
@@ -36,7 +35,7 @@ body {
     #ffcc70 100%
   );
   padding: 5%;
-  margin-top: 5%;
+  margin: 5% 0;
   margin-bottom: 1%;
   color: aliceblue;
   border-radius: 1rem;
@@ -121,10 +120,10 @@ li img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(249, 191, 223, 0.726);
+  background-image: linear-gradient(62deg, #f37acf 0%, #e0c3fc 100%);
   padding: 5%;
-  border-radius: 5%;
-  gap: 25px;
+  border-radius: 15px;
+  gap: 12px;
   min-width: 300px;
   margin: 10% 0;
 }
@@ -158,7 +157,7 @@ li img {
 
 .contact-container .contact-name {
   font-size: 1.5rem;
-  color: rgb(158, 74, 147);
+  color: rgb(255, 255, 255);
   margin-bottom: 5%;
 }
 
@@ -200,40 +199,27 @@ form h1 {
 form label {
   font-weight: 700;
   color: rgb(158, 74, 147);
+  width: 100%;
+  text-align: left;
 }
 
 form input {
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid rgb(158, 74, 147);
+  margin: 2%;
+  width: 100%;
 }
 
 form .submit-button {
   background-color: rgb(158, 74, 147);
   color: aliceblue;
-  padding: 0.5rem;
+  padding: 1rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-form .submit-button:hover {
-  background-color: rgb(245, 148, 242);
-}
-
-.edit-contact {
-  background-color: rgba(160, 57, 113, 0.726);
-  padding: 3%;
-  border-radius: 5%;
-  text-align: center;
-  text-decoration: none;
-  color: aliceblue;
   font-weight: 700;
-  margin-top: 3%;
-}
-
-.edit-contact:hover {
-  background-color: rgba(225, 137, 213, 0.606);
+  font-size: 1rem;
 }
 
 .search {
@@ -249,4 +235,41 @@ form .submit-button:hover {
 input:focus {
   outline: none;
   border: 1px solid rgb(158, 74, 147);
+}
+
+.edit-contact {
+  background-color: rgba(160, 57, 113, 0.726);
+  padding: 3%;
+  border-radius: 5%;
+  text-align: center;
+  text-decoration: none;
+  color: aliceblue;
+  font-weight: 700;
+  margin-top: 3%;
+}
+
+.contact-container .action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.delete-button {
+  background-color: rgba(255, 65, 65, 0.726);
+  padding: 3%;
+  border-radius: 5%;
+  border: none;
+  text-align: center;
+  color: aliceblue;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 3%;
+  cursor: pointer;
+}
+
+.delete-button:hover,
+.edit-contact:hover,
+form .submit-button:hover {
+  background-color: rgba(199, 161, 161, 0.726);
 }
