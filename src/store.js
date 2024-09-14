@@ -40,7 +40,13 @@ export function reducer(state = initialState, action) {
             : contact
         ),
       };
-
+    case "deleteContacts":
+      return {
+        ...state,
+        contacts: state.contacts.filter(
+          (contact) => contact.login.uuid !== action.payload.id
+        ),
+      };
     default:
       return state;
   }
@@ -77,6 +83,13 @@ export function editContact(contact) {
   return {
     type: "editContacts",
     payload: contact,
+  };
+}
+
+export function deleteContact(id) {
+  return {
+    type: "deleteContacts",
+    payload: { id },
   };
 }
 
