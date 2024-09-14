@@ -14,6 +14,15 @@ function ContactInfo({ contact }) {
           📍{contact.location.city}, {contact.location.state},{" "}
           {contact.location.country}
         </p>
+        <Link
+          to={{
+            pathname: `/contact/${contact.login.uuid}/edit`,
+          }}
+          state={{ contact }}
+          className="create-contact"
+        >
+          Edit Contact
+        </Link>
       </div>
     </div>
   );

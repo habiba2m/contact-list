@@ -58,6 +58,7 @@ li:hover {
 li img {
   border-radius: 50%;
   width: 100%;
+  max-width: 200px;
   grid-column: span 1;
 }
 
@@ -93,6 +94,7 @@ li img {
 
 .filter-button {
   margin: 0.5%;
+  margin-top: 5%;
   padding: 0.5%;
   background-color: transparent;
   border: 1px solid rgb(214, 175, 224);
@@ -152,4 +154,43 @@ li img {
   font-size: 1.5rem;
   color: rgb(158, 74, 147);
   margin-bottom: 5%;
+}
+
+.create-contact {
+  background-color: rgba(160, 57, 113, 0.726);
+  padding: 3%;
+  border-radius: 5%;
+  text-align: center;
+  text-decoration: none;
+  color: aliceblue;
+  font-weight: 700;
+  margin-top: 3%;
+}
+
+.create-contact:hover {
+  background-color: rgba(225, 137, 213, 0.606);
+}
+
+form h1 {
+  color: rgb(94, 42, 87);
+}
+
+form label {
+  font-weight: 700;
+  color: rgb(158, 74, 147);
+}
+
+form input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid rgb(158, 74, 147);
+}
+
+form .submit-button {
+  background-color: rgb(158, 74, 147);
+  color: aliceblue;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

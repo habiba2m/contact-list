@@ -26,6 +26,20 @@ export function reducer(state = initialState, action) {
         isError: true,
         isLoading: false,
       };
+    case "addContacts":
+      return {
+        ...state,
+        contacts: [...state.contacts, action.payload],
+      };
+    case "editContacts":
+      return {
+        ...state,
+        contacts: state.contacts.map((contact) =>
+          contact.login.uuid === action.payload.login.uuid
+            ? action.payload
+            : contact
+        ),
+      };
 
     default:
       return state;
@@ -51,6 +65,21 @@ export function fetchContacts() {
     }
   };
 }
+
+export function addContact(contact) {
+  return {
+    type: "addContacts",
+    payload: contact,
+  };
+}
+
+export function editContact(contact) {
+  return {
+    type: "editContacts",
+    payload: contact,
+  };
+}
+
 const store = configureStore({
   reducer,
 });
