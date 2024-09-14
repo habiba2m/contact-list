@@ -216,6 +216,7 @@ form .submit-button {
   border-radius: 5px;
   cursor: pointer;
 }
+
 form .submit-button:hover {
   background-color: rgb(245, 148, 242);
 }
@@ -233,4 +234,19 @@ form .submit-button:hover {
 
 .edit-contact:hover {
   background-color: rgba(225, 137, 213, 0.606);
+}
+
+.search {
+  width: 100%;
+  padding: 2%;
+  border-radius: 5px;
+  border: 1px solid rgb(158, 74, 147);
+  margin: 2% 0;
+  background-color: rgba(245, 215, 231, 0.726);
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid rgb(158, 74, 147);
 }

@@ -4,6 +4,7 @@ import ContactCard from "./ContactCard";
 function ContactList({ contacts, isLoading, isError }) {
   const [filteredContacts, setFilteredContacts] = useState([]);
   const [firstLetterArray, setFirstLetterArray] = useState([]);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const letters = [
@@ -13,6 +14,18 @@ function ContactList({ contacts, isLoading, isError }) {
     ];
     setFirstLetterArray(letters.sort());
   }, [contacts]);
+
+  useEffect(() => {
+    if (query === "") setFilteredContacts([]);
+    else {
+      const filteredContacts = contacts.filter(
+        (contact) =>
+          contact.name.first.toLowerCase().startsWith(query.toLowerCase()) ||
+          contact.name.last.toLowerCase().startsWith(query.toLowerCase())
+      );
+      setFilteredContacts(filteredContacts);
+    }
+  }, [query, contacts]);
 
   return (
     <>
@@ -36,7 +49,8 @@ function ContactList({ contacts, isLoading, isError }) {
             <button
               key={letter}
               className={
-                filteredContacts[0]?.name?.first[0]?.toUpperCase() === letter
+                filteredContacts[0]?.name?.first[0]?.toUpperCase() === letter &&
+                query === ""
                   ? "filter-button active-button"
                   : "filter-button"
               }
@@ -50,11 +64,24 @@ function ContactList({ contacts, isLoading, isError }) {
               {letter}
             </button>
           ))}
+          <input
+            className="search"
+            type="text"
+            placeholder="Search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
           <ul>
-            {(filteredContacts.length > 0 ? filteredContacts : contacts).map(
-              (contact) => (
-                <ContactCard key={contact.login.uuid} contact={contact} />
-              )
+            {(filteredContacts.length > 0
+              ? filteredContacts
+              : query === ""
+              ? contacts
+              : []
+            ).map((contact) => (
+              <ContactCard key={contact.login.uuid} contact={contact} />
+            ))}
+            {query !== "" && filteredContacts.length === 0 && (
+              <p className="no-result">No results found</p>
             )}
           </ul>
         </>
