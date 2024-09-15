@@ -13,7 +13,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1%;
+  padding: 3%;
   background-color: rgba(249, 234, 255, 0.914);
 }
 
@@ -54,6 +54,7 @@ li {
   padding: 1rem;
   margin: 1rem 0;
   border-radius: 1rem;
+  overflow-x: auto;
 }
 
 li:hover {
@@ -79,6 +80,15 @@ li img {
 
 .contact-details p span {
   color: rgb(130, 79, 35);
+}
+
+li::-webkit-scrollbar {
+  display: none;
+}
+
+li {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .loading,
